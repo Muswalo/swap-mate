@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Navigation = () => {
+const SignupScreen = () => {
     return (
         <View>
-            <Text>Awesome Navigation Screen</Text>
+            <Text>Awesome SigupScreen</Text>
         </View>
     );
 };
 
-export default Navigation;
+export default SignupScreen;

@@ -1,15 +1,59 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { View, Text } from 'react-native';
-import Navigation from './src/navigation/Navigation';
+import React, { useEffect, useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { View, Text } from "react-native";
 
-export default function App() {
+// Authentication Provider Modules
+import { AuthProvider, useAuth } from "./src/providers/AuthProvider";
+
+// Navigation Dependencies
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+// Screen Components
+import AppNavigation from "./src/navigation/AppNavigation";
+import LoggingScreen from "./src/screens/LoggingScreen";
+import SignupScreen from "./src/screens/SignupScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+  const [initialising, setInitialising] = useState<boolean>(true);
+  const [user, setUser] = useState<boolean | null>(null);
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
+  const onAuthChange = (isAuthenticated: boolean) => {
+    setUser(isAuthenticated);
+  };
+
+  useEffect(() => {
+    onAuthChange(isAuthenticated);
+  }, [isAuthenticated]);
+
   return (
-    <View>
-      <StatusBar style="auto" />
-      <Text>Emmauel</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {user ? (
+          <Stack.Screen name="AppNavigator" component={AppNavigation} />
+        ) : (
+          <React.Fragment>
+            <Stack.Screen name="Loggin" component={LoggingScreen} />
+            <Stack.Screen name="Sigup" component={SignupScreen} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+          </React.Fragment>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
+// Define a wrapper component for the App that includes the AuthProvider
+const AppWrapper = () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+};
 
+export default AppWrapper;

@@ -86,4 +86,43 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
  * Custom hook to use the authentication context.
  * @returns {AuthContextType} The authentication context.
  */
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = (): AuthContextType => useContext(AuthContext);
+
+
+
+
+
+
+// usage 
+
+// import React from "react";
+// import { AuthProvider, useAuth } from "./AuthProvider";
+
+// const App = () => {
+//   return (
+//     <AuthProvider>
+//       <ChildComponent />
+//     </AuthProvider>
+//   );
+// };
+
+// const ChildComponent = () => {
+//   const { isAuthenticated, error, logout } = useAuth();
+
+//   const handleLogout = async () => {
+//     await logout();
+//   };
+
+//   return (
+//     <div>
+//       {isAuthenticated ? (
+//         <button onClick={handleLogout}>Logout</button>
+//       ) : (
+//         <p>Please log in</p>
+//       )}
+//       {error && <p>Error: {error}</p>}
+//     </div>
+//   );
+// };
+
+// export default App;

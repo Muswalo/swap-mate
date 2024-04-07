@@ -1,18 +1,26 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+
+// Import the global authentication manager
 import { useAuth } from "../providers/AuthProvider";
+
+import Header from "../components/auth/Header";
 
 const LoggingScreen = () => {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
-  const handleChange = () => {
-    setIsAuthenticated(!isAuthenticated);
-  };
+
   return (
-    <View>
-      <Text>Awesome LoggingScreen</Text>
-      <Button title="press me" onPress={handleChange} />
-    </View>
+    <SafeAreaView>
+      <Header
+        logo={require("../../assets/images/logo.png")}
+        heading="Login to your"
+        headingText="swape mate accounth"
+        backgroundImage={require("../../assets/images/blackbackground.png")}
+      />
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default LoggingScreen;

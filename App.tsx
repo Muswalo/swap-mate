@@ -15,6 +15,9 @@ import LoggingScreen from "./src/screens/LoggingScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
 
+// Style Provider for global styles
+import { StylesProvider } from "./src/styles/StylesContext";
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -31,19 +34,24 @@ const App = () => {
   }, [isAuthenticated]);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {user ? (
-          <Stack.Screen name="AppNavigator" component={AppNavigation} />
-        ) : (
-          <React.Fragment>
-            <Stack.Screen name="Loggin" component={LoggingScreen} />
-            <Stack.Screen name="Sigup" component={SignupScreen} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-          </React.Fragment>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <StylesProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {user ? (
+            <Stack.Screen name="AppNavigator" component={AppNavigation} />
+          ) : (
+            <React.Fragment>
+              <Stack.Screen name="Loggin" component={LoggingScreen} />
+              <Stack.Screen name="Sigup" component={SignupScreen} />
+              <Stack.Screen
+                name="ForgotPassword"
+                component={ForgotPasswordScreen}
+              />
+            </React.Fragment>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </StylesProvider>
   );
 };
 

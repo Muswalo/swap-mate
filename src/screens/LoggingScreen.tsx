@@ -12,9 +12,9 @@ const LoggingScreen = () => {
   return (
     <SafeAreaView>
       <Header
-        logo={require("../../assets/images/logo.png")}
+        logo={require("../../assets/images/google-logo.png")}
         heading="Login to your"
-        headingText="swape mate accounth"
+        headingText="swape mate account"
         backgroundImage={require("../../assets/images/blackbackground.png")}
       />
     </SafeAreaView>

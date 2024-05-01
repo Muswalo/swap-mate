@@ -3,13 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const AuthButton = () => {
     const onAuth = () => {
-        console.log('emmanuel is awesome')
+        console.log('Google Auth')
     }
     return (
         <TouchableOpacity style={styles.buttonContainer} onPress={onAuth}>
             <View style={styles.buttonContent}>
                 <Image source={require('../../../assets/images/google-logo.png')} resizeMode='cover' style={styles.googlelogo}/>
-                <Text style={styles.buttonText}>Login with Google</Text>
+                <Text style={styles.buttonText}>Login With Google</Text>
             </View>
         </TouchableOpacity>
     );
@@ -18,7 +18,7 @@ const AuthButton = () => {
 const styles = StyleSheet.create ({
     buttonContainer: {
         backgroundColor: '#fff',
-        paddingVertical: 5,
+        paddingVertical: 7,
         alignItems: 'center',
         borderWidth: 2,
         borderColor: '#999',
